@@ -103,16 +103,16 @@ Create the Dockerfile to make the challenge's docker image.
 I will be making the docker image for `python` script of our base64 challenge as an example.
 
 - Choose the base image
-```docker
+```dockerfile
 FROM python:slim
 ```
 - Set the working directory
-```docker
+```dockerfile
 WORKDIR /root 
 ```
 - Install dependencies
 In this example we do not have any external dependency but if the challenge has external dependencies like PIL for image manipulation, numpy or other tools like gcc, MongoDB, sqlite3, and more.
-```docker
+```dockerfile
 # If the dependency is in package managers
 RUN apt-get update && apt-get install -y gcc
 RUN pip install pillow
@@ -122,7 +122,7 @@ RUN pip install pillow
 RUN wget https://github.com/Meetesh-Saini/sha256/archive/main.zip -O out.zip && unzip out.zip
 ```
 - Configure the environment
-```docker
+```dockerfile
 # Set any environment variable if required
 ENV MONGO_URI=...
 ENV REDIS_DB=...
@@ -133,7 +133,7 @@ EXPOSE 80 22
 ```
 
 - Copy the challenge related files in `/root`
-```docker
+```dockerfile
 # The following line copies all of the files present in the current directory to the `/root` of the docker container
 COPY . /root 
 
@@ -142,7 +142,7 @@ COPY app.py /root/
 ```
 
 - Define the entrypoint or the command to run the application
-```docker
+```dockerfile
 # If we want to serve file for example, challenge.txt 
 CMD ["python", "-m", "http.server", "8080"]
 
@@ -171,7 +171,7 @@ CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
     ```
 
 1. Dockerfile
-    ```docker
+    ```dockerfile
     FROM python:slim
 
     # Copy all challenge relate files to /root
