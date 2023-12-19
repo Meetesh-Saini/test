@@ -230,5 +230,5 @@ CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
 ## Details
 |||
 |-|-|
-| Deadline | 7 January, 2024 |
+| Deadline | 31 December, 2023 |
 | Target | 3-5 Challenges per person |
